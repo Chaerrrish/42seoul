@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deque_cmd_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:52:22 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/07 15:37:54 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/10 21:48:29 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	push_front(t_deque *q, t_node *x)
 {
+	if (q == NULL || x == NULL)
+		return ;
 	q->size++;
 	x->prev = NULL;
 	if (q->size == 1)
