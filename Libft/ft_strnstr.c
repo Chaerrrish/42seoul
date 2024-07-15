@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:46:47 by chaoh             #+#    #+#             */
-/*   Updated: 2023/10/19 14:48:32 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:25:11 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,8 @@ static char	*find_str(const char *haystack, const char *needle, size_t len)
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
 	char	*rt;
 
-	i = 0;
-	j = 0;
 	if (needle[0] == '\0')
 		return ((char *)&haystack[0]);
 	if (haystack[0] == '\0')

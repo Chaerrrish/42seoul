@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:45:31 by chaoh             #+#    #+#             */
-/*   Updated: 2023/10/21 16:22:49 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:38:15 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	count_size(char const *s, char c)
 		{
 			cnt++;
 			while (s[i] != c && s[i] != '\0')
-			i++;
+				i++;
 		}
 		else
 			i++;
@@ -102,7 +102,7 @@ char	**ft_split(char const *s, char c)
 	pos = 0;
 	arr = NULL;
 	if (count_size(s, c) == 0 && c == '\0')
-	{	
+	{
 		arr = (char **)malloc(sizeof(char *) * 1);
 		if (arr == NULL)
 			return (0);

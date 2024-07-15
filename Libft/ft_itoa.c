@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:43:57 by chaoh             #+#    #+#             */
-/*   Updated: 2023/10/19 14:49:40 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:24:21 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,11 @@ char	*ft_itoa(int n)
 	int			size;
 	char		*arr;
 	int			idx;
-	int			i;
 	long long	ln;
 
 	ln = (long long)n;
 	if (ln == 0)
 		return (put_zero());
-	i = 0;
 	size = count_size(ln);
 	arr = (char *)malloc((sizeof(char) * size) + 1);
 	if (arr == NULL)

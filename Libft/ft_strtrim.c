@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:47:14 by chaoh             #+#    #+#             */
-/*   Updated: 2023/10/25 15:41:31 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:23:28 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ static int	check(char const *set, char c)
 static int	count_size(char const *s1, char const *set)
 {
 	int	i;
-	int	cnt;
 	int	len;
 
 	i = 0;
-	cnt = 0;
 	len = ft_strlen(s1);
 	while (check(set, s1[i]) == 0)
 	{
@@ -55,11 +53,9 @@ static char	*do_trim(char const *s1, char const *set, char *str, int size)
 {
 	int	i;
 	int	j;
-	int	k;
 
 	i = 0;
 	j = 0;
-	k = 0;
 	while (check(set, s1[i]) == 0)
 		i++;
 	while (j < size)
@@ -79,13 +75,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*s;
 
 	s = (char *)s1;
-	if ((s1 == NULL) && (set == NULL))
+	if ((s == NULL) && (set == NULL))
 		return (0);
-	size = count_size(s1, set);
+	size = count_size(s, set);
 	str = (char *)malloc((sizeof(char) * size) + 1);
 	if (str == NULL)
 		return (0);
-	str = do_trim(s1, set, str, size);
+	str = do_trim(s, set, str, size);
 	return (str);
 }
 
