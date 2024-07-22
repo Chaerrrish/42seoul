@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:36:46 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/18 20:37:14 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/20 16:16:08 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,11 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return ((int)(value));
+}
+
+void	print_philo(t_philo *philo, int id, char *str)
+{
+	pthread_mutex_lock(&philo->print_mutex);
+	printf("%ldms %d %s\n", get_time() - philo->start, id, str);
+	pthread_mutex_unlock(&philo->print_mutex);
 }

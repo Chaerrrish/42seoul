@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:26:21 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/19 22:45:41 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:40:32 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s_philo
 	long			last_eat;
 	t_argv			*argv;
 	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t dead_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;
@@ -46,11 +47,14 @@ typedef struct s_philo
 long	get_time(void);
 void	print_error(void);
 int		ft_atoi(const char *str);
+int		eating(t_philo *philo, t_argv *argv);
 void	*philo_routine(void *arg);
-void	monitoring(t_argv *argv, t_philo *philos);
+void	print_philo(t_philo *philo, int id, char *str);
+int		monitoring(t_argv *argv, t_philo *philos);
 void	init_argv(int ac, char **av, t_argv *argv);
 void	init_philo(t_argv *argv, t_philo *philos, pthread_t *threads, \
 					pthread_mutex_t *forks);
+void	init_mutex(t_argv *argv, pthread_mutex_t *forks);
 void	run_philo(t_argv *argv, t_philo *philos, pthread_t *threads);
 
 #endif
