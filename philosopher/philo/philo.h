@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:26:21 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/22 17:40:32 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/24 15:37:36 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	*philo_routine(void *arg);
 void	print_philo(t_philo *philo, int id, char *str);
 int		monitoring(t_argv *argv, t_philo *philos);
 void	init_argv(int ac, char **av, t_argv *argv);
-void	init_philo(t_argv *argv, t_philo *philos, pthread_t *threads, \
-					pthread_mutex_t *forks);
+void	init_philo(t_argv *argv, t_philo *philos, pthread_mutex_t *forks);
 void	init_mutex(t_argv *argv, pthread_mutex_t *forks);
 void	run_philo(t_argv *argv, t_philo *philos, pthread_t *threads);
+int		check_dead_flag(t_philo *philos, int num_of_philos);
 
 #endif

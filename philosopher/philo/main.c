@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:36:29 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/22 21:57:22 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/24 15:39:49 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	eating(t_philo *philo, t_argv *argv)
         pthread_mutex_lock(philo->right_fork);
         pthread_mutex_lock(philo->left_fork);
     }
-
     print_philo(philo, philo->id, "is eating");
     usleep(argv->eat_time * 1000);
 
@@ -72,10 +71,10 @@ int	eating(t_philo *philo, t_argv *argv)
     {
         philo->eat_flag = 1;
         pthread_mutex_unlock(&philo->meal_mutex);
-        return (1);
+        return (0);
     }
     pthread_mutex_unlock(&philo->meal_mutex);
-    return (0);
+    return (1);
 }
 
 void	destroy_mutex(t_argv *argv, t_philo *philos, pthread_mutex_t *forks)
@@ -95,6 +94,24 @@ void	destroy_mutex(t_argv *argv, t_philo *philos, pthread_mutex_t *forks)
 	free(forks);
 }
 
+int	sleeping(t_philo *philo, t_argv *argv)
+{
+	if (check_dead_flag(philo, argv->number_of_philo) == 1)
+		return (0);
+	print_philo(philo, philo->id, "is sleeping");
+	usleep(argv->sleep_time * 1000);
+	return (1);
+}
+
+int thinking(t_philo *philo, t_argv *argv)
+{
+	if (check_dead_flag(philo, argv->number_of_philo) == 1)
+		return (0);
+	print_philo(philo, philo->id, "is thinking");
+	usleep(500);
+	return (1);
+}
+
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
@@ -111,12 +128,14 @@ void	*philo_routine(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->dead_mutex);
-		if (eating(philo, argv) == 1)
+		if (eating(philo, argv) == 0)
 			break ;
-		print_philo(philo, philo->id, "is sleeping");
-		usleep(argv->sleep_time * 1000);
-		print_philo(philo, philo->id, "is thinking");
+		if (sleeping(philo, argv) == 0)
+			break ;
+		if (thinking(philo, argv) == 0)
+			break ;
 	}
+	printf("%d eat : %d\n",philo->id, philo->eat_cnt);
 	return (NULL);
 }
 
@@ -136,7 +155,7 @@ int	main(int ac, char **av)
 	if (threads == NULL || philos == NULL || forks == NULL)
 		print_error();
 	init_mutex(&argv, forks);
-	init_philo(&argv, philos, threads, forks);
+	init_philo(&argv, philos, forks);
 	run_philo(&argv, philos, threads);
 	destroy_mutex(&argv, philos, forks);
 	free(threads);

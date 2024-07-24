@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:46:11 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/22 17:26:03 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:17:22 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	init_mutex(t_argv *argv, pthread_mutex_t *forks)
 	}
 }
 
-void	init_philo(t_argv *argv, t_philo *philos, pthread_t *threads, \
-					pthread_mutex_t *forks)
+void	init_philo(t_argv *argv, t_philo *philos, pthread_mutex_t *forks)
 {
 	int		i;
 	long	start_time;
@@ -58,8 +57,6 @@ void	init_philo(t_argv *argv, t_philo *philos, pthread_t *threads, \
 		pthread_mutex_init(&philos[i].meal_mutex, NULL);
 		pthread_mutex_init(&philos[i].print_mutex, NULL);
 		pthread_mutex_init(&philos[i].dead_mutex, NULL);
-		if (pthread_create(&threads[i], NULL, philo_routine, &philos[i]) != 0)
-			print_error();
 		i++;
 	}
 }
