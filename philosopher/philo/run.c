@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:24:29 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/24 15:20:12 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/27 18:20:34 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,25 @@ int	monitoring(t_argv *argv, t_philo *philos)
 void	run_philo(t_argv *argv, t_philo *philos, pthread_t *threads)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < argv->number_of_philo)
 	{
 		pthread_create(&threads[i], NULL, philo_routine, &philos[i]);
-		i++;
-	}
-	if (monitoring(argv, philos) == 1)
-	{
-		i = 0;
-		while (i < argv->number_of_philo)
+		if (monitoring(argv, philos) == 1)
 		{
-			pthread_mutex_lock(&philos[i].dead_mutex);
-			philos[i].dead_flag = 1;
-			pthread_mutex_unlock(&philos[i].dead_mutex);
-			pthread_join(threads[i], NULL);
-			i++;
+			j = 0;
+			while (j < argv->number_of_philo)
+			{
+				pthread_mutex_lock(&philos[j].dead_mutex);
+				philos[j].dead_flag = 1;
+				pthread_mutex_unlock(&philos[j].dead_mutex);
+				pthread_join(threads[j], NULL);
+				j++;
+			}
+			return ;
 		}
-		return ;
+		i++;
 	}
 }

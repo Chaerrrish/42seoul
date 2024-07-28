@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 15:26:21 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/27 22:28:16 by chaerin          ###   ########.fr       */
+/*   Created: 2024/07/27 21:36:09 by chaerin           #+#    #+#             */
+/*   Updated: 2024/07/28 20:36:49 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,42 +19,39 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-typedef struct s_argv
+typedef struct  s_data
 {
-	int	number_of_philo;
-	int	life_time;
-	int	eat_time;
-	int	sleep_time;
-	int	eat_num;
-}	t_argv;
+	int				philo_num;
+	int				life_time;
+	int				eat_time;
+	int				sleep_time;
+	int				eat_num;
+	int				stop_flag;
+	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	dead_mutex;
+}   t_data;
 
 typedef struct s_philo
 {
 	int				id;
 	int				eat_cnt;
-	int				eat_flag;
-	int				dead_flag;
 	long			start;
 	long			last_eat;
-	t_argv			*argv;
-	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	dead_mutex;
+	pthread_t		thread;
+	t_data			*data;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-}	t_philo;
+}   t_philo;
 
-long	get_time(void);
-void	print_error(void);
-int		ft_atoi(const char *str);
-int		eating(t_philo *philo, t_argv *argv);
-void	*philo_routine(void *arg);
+int	    ft_atoi(const char *str);
 void	print_philo(t_philo *philo, int id, char *str);
-int		monitoring(t_argv *argv, t_philo *philos);
-void	init_argv(int ac, char **av, t_argv *argv);
-void	init_philo(t_argv *argv, t_philo *philos, pthread_mutex_t *forks);
-void	init_mutex(t_argv *argv, pthread_mutex_t *forks);
-void	run_philo(t_argv *argv, t_philo *philos, pthread_t *threads);
-int		check_dead_flag(t_philo *philos, int num_of_philos);
-
+long	get_time(void);
+void    init_data(int ac, char **av, t_data *data);
+void	init_mutex(t_data *data, t_philo *philos, pthread_mutex_t *forks);
+void	init_philo(t_data *data, t_philo *philos, pthread_mutex_t *forks);
+int 	get_fork(t_philo *philo);
+int		eating(t_philo *philo, t_data *data);
+int		sleeping(t_philo *philo, t_data *data);
+int		thinking(t_philo *philo, t_data *data);
 #endif
