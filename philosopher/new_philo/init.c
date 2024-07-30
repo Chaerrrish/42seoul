@@ -6,13 +6,13 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 00:22:29 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/28 00:58:27 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:07:58 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    init_data(int ac, char **av, t_data *data)
+void	init_data(int ac, char **av, t_data *data)
 {
 	data->stop_flag = 0;
 	data->philo_num = ft_atoi(av[1]);
@@ -25,7 +25,7 @@ void    init_data(int ac, char **av, t_data *data)
 		data->eat_num = -1;
 }
 
-void	init_mutex(t_data *data, t_philo *philos, pthread_mutex_t **forks)
+void	init_mutex(t_data *data, pthread_mutex_t **forks)
 {
 	int	i;
 
@@ -33,7 +33,9 @@ void	init_mutex(t_data *data, t_philo *philos, pthread_mutex_t **forks)
 	pthread_mutex_init(&data->dead_mutex, NULL);
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->meal_mutex, NULL);
-	forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
+	*forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
+	if (*forks == NULL)
+		print_error();
 	while (i < data->philo_num)
 	{
 		pthread_mutex_init(&(*forks)[i], NULL);
@@ -45,10 +47,12 @@ void	init_philo(t_data *data, t_philo **philos, pthread_mutex_t *forks)
 {
 	int		i;
 	long	start_time;
-	
+
 	i = 0;
 	start_time = get_time();
-	philos = malloc(sizeof(pthread_t) * data->philo_num);
+	*philos = malloc(sizeof(t_philo) * data->philo_num);
+	if (*philos == NULL)
+		print_error();
 	while (i < data->philo_num)
 	{
 		(*philos)[i].id = i + 1;
@@ -57,6 +61,7 @@ void	init_philo(t_data *data, t_philo **philos, pthread_mutex_t *forks)
 		(*philos)[i].last_eat = start_time;
 		(*philos)[i].left_fork = &forks[i];
 		(*philos)[i].right_fork = &forks[(i + 1) % data->philo_num];
+		(*philos)[i].data = data;
 		i++;
 	}
 }

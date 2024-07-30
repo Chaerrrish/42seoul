@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:36:09 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/28 20:36:49 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/29 21:31:25 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-typedef struct  s_data
+typedef struct s_data
 {
 	int				philo_num;
 	int				life_time;
@@ -30,7 +30,7 @@ typedef struct  s_data
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	dead_mutex;
-}   t_data;
+}	t_data;
 
 typedef struct s_philo
 {
@@ -42,16 +42,26 @@ typedef struct s_philo
 	t_data			*data;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-}   t_philo;
+}	t_philo;
 
-int	    ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 void	print_philo(t_philo *philo, int id, char *str);
 long	get_time(void);
-void    init_data(int ac, char **av, t_data *data);
-void	init_mutex(t_data *data, t_philo *philos, pthread_mutex_t *forks);
-void	init_philo(t_data *data, t_philo *philos, pthread_mutex_t *forks);
-int 	get_fork(t_philo *philo);
+void	print_error(void);
+int		check_stop_flag(t_data *data);
+void	init_data(int ac, char **av, t_data *data);
+void	init_mutex(t_data *data, pthread_mutex_t **forks);
+void	init_philo(t_data *data, t_philo **philos, pthread_mutex_t *forks);
+int		get_fork(t_philo *philo, t_data *data);
 int		eating(t_philo *philo, t_data *data);
 int		sleeping(t_philo *philo, t_data *data);
 int		thinking(t_philo *philo, t_data *data);
+void	run_philo(t_data *data, t_philo *philos, pthread_t *threads);
+void	*philo_routine(void *arg);
+void	monitoring(t_philo *philos, t_data *data);
+int		check_stop_flag(t_data *data);
+int		check_finished_philo(int finished_philo, t_data *data);
+int		check_philo_full(t_philo *philo, t_data *data);
+int		check_philo_death(t_philo *philo, t_data *data);
+int		check_philos_state(t_philo *philos, t_data *data);
 #endif

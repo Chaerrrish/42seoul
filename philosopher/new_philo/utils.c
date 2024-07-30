@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:36:46 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/20 16:16:08 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:10:42 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +44,7 @@ int	ft_atoi(const char *str)
 void	print_philo(t_philo *philo, int id, char *str)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%ldms %d %s\n", get_time() - philo->start, id, str);
+	printf("%ld %d %s\n", get_time() - philo->start, id, str);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 

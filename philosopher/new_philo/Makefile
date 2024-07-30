@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g -pthread
 NAME = philosopher
-SRCS = init.c main.c action.c utils.c run.c
+SRCS = init.c main.c action.c utils.c check.c
 OBJS = $(SRCS:.c=.o)
 
 .PHONY : all clean fclean re
