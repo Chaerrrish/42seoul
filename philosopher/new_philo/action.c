@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:05:11 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/29 21:06:21 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/30 16:24:30 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	eating(t_philo *philo, t_data *data)
 	pthread_mutex_lock(&data->meal_mutex);
 	philo->eat_cnt++;
 	philo->last_eat = get_time();
-	if (data->eat_num != -1 && philo->eat_cnt == data->eat_num)
+	if (data->eat_num != -1 && philo->eat_cnt >= data->eat_num)
 		result = 0;
 	pthread_mutex_unlock(&data->meal_mutex);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	if (check_stop_flag(data))
-		return (0);
+		result = 0;
 	return (result);
 }
 
