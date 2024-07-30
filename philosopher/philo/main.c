@@ -6,7 +6,7 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 22:09:28 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 18:35:41 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/30 20:39:52 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	main(int ac, char **av)
 
 	if (ac < 5 || ac > 6)
 		return (1);
-	init_data(ac, av, &data);
+	if (init_data(ac, av, &data))
+		return (1);
 	threads = malloc(sizeof(pthread_t) * data.philo_num);
 	if (threads == NULL)
 		return (1);

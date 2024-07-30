@@ -6,7 +6,7 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:36:09 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 18:33:27 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/30 20:39:19 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long	get_time(void);
 void	ft_usleep(long time, t_data *data);
 void	print_error(void);
 int		check_stop_flag(t_data *data);
-void	init_data(int ac, char **av, t_data *data);
+int		init_data(int ac, char **av, t_data *data);
 int		init_mutex(t_data *data, pthread_mutex_t **forks);
 int		init_philo(t_data *data, t_philo **philos, pthread_mutex_t *forks);
 int		get_fork(t_philo *philo, t_data *data);

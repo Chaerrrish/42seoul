@@ -6,16 +6,18 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 00:22:29 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 18:31:07 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/07/30 20:39:09 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_data(int ac, char **av, t_data *data)
+int	init_data(int ac, char **av, t_data *data)
 {
 	data->stop_flag = 0;
 	data->philo_num = ft_atoi(av[1]);
+	if (data->philo_num == 0)
+		return (1);
 	data->life_time = ft_atoi(av[2]);
 	data->eat_time = ft_atoi(av[3]);
 	data->sleep_time = ft_atoi(av[4]);
@@ -23,6 +25,7 @@ void	init_data(int ac, char **av, t_data *data)
 		data->eat_num = ft_atoi(av[5]);
 	else
 		data->eat_num = -1;
+	return (0);
 }
 
 int	init_mutex(t_data *data, pthread_mutex_t **forks)
