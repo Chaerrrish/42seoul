@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 00:22:29 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/29 18:07:58 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:44:18 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_philo(t_data *data, t_philo **philos, pthread_mutex_t *forks)
 	long	start_time;
 
 	i = 0;
-	start_time = get_time();
+	start_time = get_time() + data->philo_num;
 	*philos = malloc(sizeof(t_philo) * data->philo_num);
 	if (*philos == NULL)
 		print_error();

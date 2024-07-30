@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 22:09:28 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 16:22:32 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:49:48 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	monitoring(t_philo *philos, t_data *data)
 			break ;
 		if (check_philos_state(philos, data))
 			break ;
-		usleep(500);
+		ft_usleep(1, data);
 	}
 }
 
@@ -46,6 +46,10 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
+	while (get_time() < philo->start)
+		usleep(100);
+	if (philo->id % 2 == 0)
+		ft_usleep(data->eat_time / 2, data);
 	while (1)
 	{
 		if (get_fork(philo, data) == 0)

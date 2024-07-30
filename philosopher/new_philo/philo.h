@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:36:09 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/29 21:31:25 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:17:13 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_philo
 int		ft_atoi(const char *str);
 void	print_philo(t_philo *philo, int id, char *str);
 long	get_time(void);
+void	ft_usleep(long time, t_data *data);
 void	print_error(void);
 int		check_stop_flag(t_data *data);
 void	init_data(int ac, char **av, t_data *data);

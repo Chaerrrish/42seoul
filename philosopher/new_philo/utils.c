@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:36:46 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/29 18:10:42 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:39:14 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@ void	print_error(void)
 {
 	printf("Error\n");
 	exit(1);
+}
+
+void	ft_usleep(long time, t_data *data)
+{
+	long finish = get_time() + time;
+	while (get_time() < finish)
+	{
+		if (check_stop_flag(data))
+			break ;
+		usleep(100);
+	}
 }
 
 int	ft_atoi(const char *str)
@@ -43,6 +54,8 @@ int	ft_atoi(const char *str)
 
 void	print_philo(t_philo *philo, int id, char *str)
 {
+	if (check_stop_flag(philo->data))
+		return ;
 	pthread_mutex_lock(&philo->data->print_mutex);
 	printf("%ld %d %s\n", get_time() - philo->start, id, str);
 	pthread_mutex_unlock(&philo->data->print_mutex);
