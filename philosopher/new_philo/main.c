@@ -6,7 +6,7 @@
 /*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 22:09:28 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 16:22:32 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/08/01 20:27:41 by chaerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ void	run_philo(t_data *data, t_philo *philos, pthread_t *threads)
 	while (i < data->philo_num)
 	{
 		pthread_join(threads[i], NULL);
-		i++;
-	}
-	i = 0;
-	while (i < data->philo_num)
-	{
-		printf("%d ate %d times\n", philos[i].id, philos[i].eat_cnt);
 		i++;
 	}
 }
