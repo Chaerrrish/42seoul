@@ -6,7 +6,7 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:05:11 by chaerin           #+#    #+#             */
-/*   Updated: 2024/08/06 19:34:23 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/08/06 20:32:53 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int	eating(t_philo *philo, t_data *data)
 		return (0);
 	}
 	print_philo(philo, philo->id, "is eating");
+	pthread_mutex_lock(&data->meal_mutex);
 	philo->last_eat = get_time();
+	pthread_mutex_unlock(&data->meal_mutex);
 	ft_usleep(data->eat_time, data);
 	pthread_mutex_lock(&data->meal_mutex);
 	philo->eat_cnt++;
