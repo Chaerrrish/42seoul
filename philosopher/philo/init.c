@@ -6,7 +6,7 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 00:22:29 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 20:44:17 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/08/03 13:59:09 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 int	init_data(int ac, char **av, t_data *data)
 {
 	data->stop_flag = 0;
-	data->philo_num = ft_atoi(av[1]);
-	if (data->philo_num == 0)
+	if (philo_atoi(av[1], &(data->philo_num)) \
+		|| philo_atoi(av[2], &(data->life_time)) \
+		|| philo_atoi(av[3], &(data->eat_time)) \
+		|| philo_atoi(av[4], &(data->sleep_time)))
 		return (1);
-	data->life_time = ft_atoi(av[2]);
-	if (data->life_time == 0)
+	if (ac == 6 && philo_atoi(av[5], &(data->eat_num)))
 		return (1);
-	data->eat_time = ft_atoi(av[3]);
-	data->sleep_time = ft_atoi(av[4]);
-	if (ac == 6)
-		data->eat_num = ft_atoi(av[5]);
-	else
+	else if (ac != 6)
 		data->eat_num = -1;
+	if (data->philo_num == 0 || data->life_time == 0 \
+		|| data->eat_time < 0 || data->sleep_time < 0)
+		return (1);
 	return (0);
 }
 

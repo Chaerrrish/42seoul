@@ -6,7 +6,7 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:36:09 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 20:39:19 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/08/06 19:35:23 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 }	t_philo;
 
-int		ft_atoi(const char *str);
+int		philo_atoi(const char *str, int *num);
 void	print_philo(t_philo *philo, int id, char *str);
 long	get_time(void);
 void	ft_usleep(long time, t_data *data);
-void	print_error(void);
 int		check_stop_flag(t_data *data);
 int		init_data(int ac, char **av, t_data *data);
 int		init_mutex(t_data *data, pthread_mutex_t **forks);

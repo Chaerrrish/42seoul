@@ -6,17 +6,11 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:36:46 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 18:36:10 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/08/06 19:34:32 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	print_error(void)
-{
-	printf("Error\n");
-	exit(1);
-}
 
 void	ft_usleep(long time, t_data *data)
 {
@@ -31,7 +25,7 @@ void	ft_usleep(long time, t_data *data)
 	}
 }
 
-int	ft_atoi(const char *str)
+int	philo_atoi(const char *str, int *num)
 {
 	int			i;
 	long long	value;
@@ -43,7 +37,7 @@ int	ft_atoi(const char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			print_error();
+			return (1);
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
@@ -51,7 +45,10 @@ int	ft_atoi(const char *str)
 		value = value * 10 + (str[i] - '0');
 		i++;
 	}
-	return ((int)(value));
+	if (value > 2147483647)
+		return (1);
+	*num = (int)value;
+	return (0);
 }
 
 void	print_philo(t_philo *philo, int id, char *str)

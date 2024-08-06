@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -g -pthread
 NAME = philo
 SRCS = init.c main.c action.c utils.c check.c
 OBJS = $(SRCS:.c=.o)
