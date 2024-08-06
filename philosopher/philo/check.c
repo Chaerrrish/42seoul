@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaerin <chaerin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 01:01:19 by chaerin           #+#    #+#             */
-/*   Updated: 2024/07/30 16:19:18 by chaerin          ###   ########.fr       */
+/*   Updated: 2024/08/06 20:11:48 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ int	check_stop_flag(t_data *data)
 	stop_flag = data->stop_flag;
 	pthread_mutex_unlock(&data->dead_mutex);
 	return (stop_flag);
-}
-
-int	check_finished_philo(int finished_philo, t_data *data)
-{
-	if (data->eat_num != -1 && finished_philo == data->philo_num)
-	{
-		pthread_mutex_lock(&data->dead_mutex);
-		data->stop_flag = 1;
-		pthread_mutex_unlock(&data->dead_mutex);
-		printf("All philosophers are full!\n");
-		return (1);
-	}
-	return (0);
 }
 
 int	check_philo_full(t_philo *philo, t_data *data)

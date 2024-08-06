@@ -6,7 +6,7 @@
 /*   By: chaoh <chaoh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:36:09 by chaerin           #+#    #+#             */
-/*   Updated: 2024/08/06 19:35:23 by chaoh            ###   ########.fr       */
+/*   Updated: 2024/08/06 20:11:43 by chaoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	run_philo(t_data *data, t_philo *philos, pthread_t *threads);
 void	*philo_routine(void *arg);
 void	monitoring(t_philo *philos, t_data *data);
 int		check_stop_flag(t_data *data);
-int		check_finished_philo(int finished_philo, t_data *data);
 int		check_philo_full(t_philo *philo, t_data *data);
 int		check_philo_death(t_philo *philo, t_data *data);
 int		check_philos_state(t_philo *philos, t_data *data);
